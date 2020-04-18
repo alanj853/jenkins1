@@ -4,20 +4,6 @@ pipeline {
     }
 
     stages {
-        // stage('Container setup') {
-        //     steps {
-        //         echo 'Entering container...'
-        //         withDockerContainer(image: 'scm_image:1.0.0') {
-        //           echo 'Confirming container...'
-        //           sh 'cat /etc/VERSION'
-        //           stage('Build inside container') {
-        //               steps {
-        //                 echo 'Building in container..'
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
         stage('Container Verification') {
             steps {
                 sh 'cat /etc/VERSION'
@@ -25,12 +11,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'mix deps.get'
+                sh 'mix compile'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'mix test'
             }
         }
         stage('Deploy') {
