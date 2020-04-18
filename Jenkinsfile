@@ -1,7 +1,6 @@
-env.DOCKER_IMAGE='scm_image:1.0.0'
 pipeline {
     agent {
-        docker { image "${DOCKER_IMAGE}" }
+        docker { image 'scm_image:1.0.2' }
     }
 
     stages {
