@@ -4,13 +4,10 @@ pipeline {
     }
 
     stages {
-        stage('Container Verification') {
-            steps {
-                sh 'cat /etc/VERSION'
-            }
-        }
         stage('Build') {
             steps {
+                sh 'VERSION=$(cat /etc/VERSION)'
+                sh 'echo "Building with $VERSION"'
                 sh 'mix deps.get'
                 sh 'mix compile'
             }
