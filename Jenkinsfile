@@ -7,7 +7,12 @@ pipeline {
                 echo 'Entering container...'
                 withDockerContainer(image: 'scm_image:1.0.0') {
                   echo 'Confirming container...'
-                  sh 'cat /etc/VERSION'  
+                  sh 'cat /etc/VERSION'
+                  stage('Build inside container') {
+                      steps {
+                        echo 'Building in container..'
+                        }
+                    }
                 }
             }
         }
