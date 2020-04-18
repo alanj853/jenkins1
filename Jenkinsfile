@@ -1,13 +1,13 @@
 pipeline {
+    env.DOCKER_IMAGE='scm_image:1.0.0'
     agent {
-        docker { image 'scm_image:1.0.0' }
+        docker { image ${DOCKER_IMAGE} }
     }
 
     stages {
         stage('Build') {
             steps {
-                sh 'VERSION=$(cat /etc/VERSION)'
-                sh 'echo "Building with $VERSION"'
+                sh 'cat /etc/VERSION'
                 sh 'mix deps.get'
                 sh 'mix compile'
             }
