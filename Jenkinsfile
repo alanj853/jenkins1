@@ -1,19 +1,26 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'scm_image:1.0.0' }
+    }
 
     stages {
-        stage('Container setup') {
+        // stage('Container setup') {
+        //     steps {
+        //         echo 'Entering container...'
+        //         withDockerContainer(image: 'scm_image:1.0.0') {
+        //           echo 'Confirming container...'
+        //           sh 'cat /etc/VERSION'
+        //           stage('Build inside container') {
+        //               steps {
+        //                 echo 'Building in container..'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        stage('Container Verification') {
             steps {
-                echo 'Entering container...'
-                withDockerContainer(image: 'scm_image:1.0.0') {
-                  echo 'Confirming container...'
-                  sh 'cat /etc/VERSION'
-                  stage('Build inside container') {
-                      steps {
-                        echo 'Building in container..'
-                        }
-                    }
-                }
+                sh 'cat /etc/version'
             }
         }
         stage('Build') {
