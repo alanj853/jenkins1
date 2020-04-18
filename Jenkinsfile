@@ -20,7 +20,7 @@ pipeline {
         // }
         stage('Container Verification') {
             steps {
-                sh 'cat /etc/version'
+                sh 'cat /etc/VERSION'
             }
         }
         stage('Build') {
