@@ -9,6 +9,7 @@ pipeline {
                   echo 'Confirming container...'
                   sh 'cat /etc/VERSION'  
                 }
+            }
         }
         stage('Build') {
             steps {
