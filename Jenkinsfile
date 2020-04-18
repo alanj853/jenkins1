@@ -1,5 +1,5 @@
+env.DOCKER_IMAGE='scm_image:1.0.0'
 pipeline {
-    env.DOCKER_IMAGE='scm_image:1.0.0'
     agent {
         docker { image "${DOCKER_IMAGE}" }
     }
